@@ -1,7 +1,10 @@
 package lotto.controller;
 
+import lotto.domain.LottoCount;
+import lotto.domain.LottoPrice;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.dto.InputMoneyRequest;
 
 public class LottoGameController {
 
@@ -10,7 +13,8 @@ public class LottoGameController {
 
 
     public void run() {
-
+        InputMoneyRequest moneyRequest = inputView.inputMoney();
+        LottoCount lottoCount = LottoPrice.calculateLottoCount(moneyRequest);
 
     }
 }
