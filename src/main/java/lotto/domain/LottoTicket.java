@@ -2,11 +2,11 @@ package lotto.domain;
 
 import java.util.List;
 
-public class Lottos {
+public class LottoTicket {
 
     private final List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos) {
+    public LottoTicket(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 }
