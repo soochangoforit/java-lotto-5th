@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.ErrorMessage.ONLY_CAN_DIVIDE_BY_LOTTO_PRICE;
+
 import lotto.view.dto.InputMoneyRequest;
 
 public class LottoPrice {
@@ -14,7 +16,7 @@ public class LottoPrice {
 
     private static void validate(InputMoneyRequest playerMoney) {
         if (!isDivided(playerMoney)) {
-            throw new IllegalArgumentException("구입 금액은 1000원 단위로 입력 가능합니다.");
+            throw new IllegalArgumentException(ONLY_CAN_DIVIDE_BY_LOTTO_PRICE);
         }
     }
 

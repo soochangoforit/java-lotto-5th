@@ -1,10 +1,11 @@
 package lotto.view.dto;
 
+import static lotto.domain.ErrorMessage.ONLY_NUMBER_MESSAGE;
+
 import java.util.regex.Pattern;
 
 public class InputMoneyRequest {
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[0-9]*$");
-    private static final String ONLY_NUMBER_MESSAGE = "구입 금액은 숫자만 입력 가능합니다.";
 
     private final int inputMoney;
 
