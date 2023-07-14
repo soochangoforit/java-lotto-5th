@@ -8,7 +8,7 @@ public class LottoPrice {
 
     public static LottoCount calculateLottoCount(InputMoneyRequest playerMoney) {
         validate(playerMoney);
-        int ticketCount = playerMoney.divide(LOTTO_PRICE);
+        int ticketCount = playerMoney.calculateLottoCount(LOTTO_PRICE);
         return new LottoCount(ticketCount);
     }
 
@@ -19,6 +19,6 @@ public class LottoPrice {
     }
 
     private static boolean isDivided(final InputMoneyRequest playerMoney) {
-        return playerMoney.divide(LOTTO_PRICE) == 0;
+        return playerMoney.isDivided(LOTTO_PRICE);
     }
 }

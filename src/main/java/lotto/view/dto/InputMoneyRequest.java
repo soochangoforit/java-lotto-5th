@@ -28,7 +28,11 @@ public class InputMoneyRequest {
         return NUMBER_REGEX.matcher(lottoMoney).matches();
     }
 
-    public int divide(final int lottoPrice) {
+    public int calculateLottoCount(final int lottoPrice) {
         return inputMoney / lottoPrice;
+    }
+
+    public boolean isDivided(final int lottoPrice) {
+        return inputMoney % lottoPrice == 0;
     }
 }
