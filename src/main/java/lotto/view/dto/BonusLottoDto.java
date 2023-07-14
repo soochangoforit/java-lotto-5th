@@ -38,4 +38,8 @@ public class BonusLottoDto {
     private static boolean isNotConsistOfNumber(final String rawBonusLottoNumber) {
         return !NUMBER_PATTERN.matcher(rawBonusLottoNumber).matches();
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

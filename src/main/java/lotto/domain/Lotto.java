@@ -45,4 +45,7 @@ public class Lotto {
     }
 
 
+    public boolean hasSameNumber(final LottoNumber bonusLotto) {
+        return numbers.contains(bonusLotto);
+    }
 }

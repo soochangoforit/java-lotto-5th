@@ -106,3 +106,7 @@
 ### LottoTicketFactory
 
 - 생성하고자 하는 티켓의 개수에 따라, 로또 티켓을 만든다.
+
+### DuplicateValidator
+
+- 당첨번호와 보너스 번호가 중복이 있는지 검증한다.

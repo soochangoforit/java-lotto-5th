@@ -54,6 +54,9 @@ public class WinningLottoDto {
         String[] splitRawWinningNumbers = rawWinningLottoNumbers.split(WINNING_LOTTO_DELIMITER);
         return splitRawWinningNumbers.length != LOTTO_SIZE;
     }
+    
 
-
+    public List<Integer> getWinningNumbers() {
+        return winningLotto;
+    }
 }

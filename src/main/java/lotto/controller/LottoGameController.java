@@ -1,6 +1,9 @@
 package lotto.controller;
 
+import lotto.domain.DuplicateValidator;
+import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
+import lotto.domain.LottoNumber;
 import lotto.domain.LottoPrice;
 import lotto.domain.LottoTicket;
 import lotto.domain.LottoTicketFactory;
@@ -33,7 +36,10 @@ public class LottoGameController {
         outputView.printLottoTicket(responseDto);
 
         WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
+        Lotto winningLotto = new Lotto(winningLottoDto.getWinningNumbers());
         BonusLottoDto bonusLottoDto = inputView.inputBonusLotto();
+        LottoNumber bonusLotto = new LottoNumber(bonusLottoDto.getBonusNumber());
+        DuplicateValidator.validate(winningLotto, bonusLotto);
 
     }
 }
