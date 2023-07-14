@@ -13,4 +13,8 @@ public class LottoTicket {
     public int size() {
         return lottos.size();
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

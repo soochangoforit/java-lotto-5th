@@ -37,5 +37,12 @@ public class Lotto {
                 .count() == LOTTO_SIZE;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+                .map(LottoNumber::getNumber)
+                .sorted()
+                .collect(toList());
+    }
+
 
 }

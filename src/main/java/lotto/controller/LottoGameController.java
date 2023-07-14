@@ -8,6 +8,7 @@ import lotto.domain.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.dto.InputMoneyRequest;
+import lotto.view.dto.LottoTicketInfoDto;
 
 public class LottoGameController {
 
@@ -25,6 +26,7 @@ public class LottoGameController {
         InputMoneyRequest moneyRequest = inputView.inputMoney();
         LottoCount lottoCount = LottoPrice.calculateLottoCount(moneyRequest);
         LottoTicket lottoTicket = LottoTicketFactory.createLottoTicket(lottoCount, numberGenerator);
+        LottoTicketInfoDto responseDto = LottoTicketInfoDto.from(lottoTicket);
 
 
     }

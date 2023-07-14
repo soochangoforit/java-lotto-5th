@@ -17,6 +17,10 @@ public class LottoNumber {
         this.number = number;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private void validate(int number) {
         if (!isInRange(number)) {
             throw new IllegalArgumentException(ONLY_LOTTO_NUMBER_IN_RANGE);
