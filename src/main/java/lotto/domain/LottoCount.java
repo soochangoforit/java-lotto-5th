@@ -40,5 +40,4 @@ public class LottoCount {
         return count;
     }
 
-    // TODO : Count 는 0이 될 수 없다.
 }
