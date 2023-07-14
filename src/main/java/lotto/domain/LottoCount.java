@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.ErrorMessage.CAN_NOT_UNDER_ZERO;
+
 import java.util.Objects;
 
 public class LottoCount {
@@ -7,7 +9,18 @@ public class LottoCount {
     private final int count;
 
     public LottoCount(int count) {
+        validate(count);
         this.count = count;
+    }
+
+    private void validate(int count) {
+        if (isUnderZero(count)) {
+            throw new IllegalArgumentException(CAN_NOT_UNDER_ZERO);
+        }
+    }
+
+    private static boolean isUnderZero(final int count) {
+        return count <= 0;
     }
 
     @Override
@@ -26,4 +39,6 @@ public class LottoCount {
     public int getCount() {
         return count;
     }
+
+    // TODO : Count 는 0이 될 수 없다.
 }

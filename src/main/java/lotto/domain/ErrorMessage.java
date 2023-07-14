@@ -8,6 +8,8 @@ public final class ErrorMessage {
 
     public static final String OVER_LOTTO_SIZE = "로또 번호는 6개만 가능합니다.";
 
+    public static final String CAN_NOT_UNDER_ZERO = "사고자 하는 개수는 0보다 작을 수 없습니다.";
+
     private ErrorMessage() {
     }
 }
