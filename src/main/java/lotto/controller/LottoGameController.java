@@ -27,6 +27,7 @@ public class LottoGameController {
         LottoCount lottoCount = LottoPrice.calculateLottoCount(moneyRequest);
         LottoTicket lottoTicket = LottoTicketFactory.createLottoTicket(lottoCount, numberGenerator);
         LottoTicketInfoDto responseDto = LottoTicketInfoDto.from(lottoTicket);
+        outputView.printLottoTicket(responseDto);
 
 
     }
