@@ -13,7 +13,7 @@ class RandomNumberGeneratorTest {
 
     private final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
-    public static Stream<Arguments> randomNumberGeneratorTestParameters() {
+    private static Stream<Arguments> randomNumberGeneratorTestParameters() {
         return Stream.of(
                 Arguments.of(1, 45, 6),
                 Arguments.of(1, 45, 7),
