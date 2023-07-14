@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.dto.BonusLottoDto;
 import lotto.view.dto.InputMoneyRequest;
 import lotto.view.dto.WinningLottoDto;
 
@@ -20,5 +21,11 @@ public enum InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String rawWinningLottoNumbers = Console.readLine();
         return WinningLottoDto.from(rawWinningLottoNumbers);
+    }
+
+    public BonusLottoDto inputBonusLotto() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+        String rawBonusLottoNumber = Console.readLine();
+        return BonusLottoDto.from(rawBonusLottoNumber);
     }
 }
