@@ -1,6 +1,6 @@
 package lotto.view.dto;
 
-import static lotto.domain.ErrorMessage.ONLY_NUMBER_MESSAGE;
+import static lotto.domain.ErrorMessage.IS_NOT_CONSIST_OF_NUMBER;
 
 import java.util.regex.Pattern;
 
@@ -17,7 +17,7 @@ public class InputMoneyRequest {
 
     private void validate(final String lottoMoney) {
         if (isBlank(lottoMoney) || !isNumber(lottoMoney)) {
-            throw new IllegalArgumentException(ONLY_NUMBER_MESSAGE);
+            throw new IllegalArgumentException(IS_NOT_CONSIST_OF_NUMBER);
         }
     }
 

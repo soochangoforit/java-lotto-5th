@@ -1,5 +1,9 @@
 package lotto.view.dto;
 
+import static lotto.domain.ErrorMessage.IS_NOT_BLANK;
+import static lotto.domain.ErrorMessage.IS_NOT_CONSIST_OF_NUMBER;
+import static lotto.domain.ErrorMessage.IS_NOT_ONE_BONUS_BALL;
+
 import java.util.regex.Pattern;
 
 public class BonusLottoDto {
@@ -19,15 +23,15 @@ public class BonusLottoDto {
 
     private static void validate(final String rawBonusLottoNumber) {
         if (rawBonusLottoNumber.isBlank()) {
-            throw new IllegalArgumentException("빈문자열과 공백은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(IS_NOT_BLANK);
         }
 
         if (!hasOneNumber(rawBonusLottoNumber)) {
-            throw new IllegalArgumentException("보너스 볼은 1개만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(IS_NOT_ONE_BONUS_BALL);
         }
 
         if (isNotConsistOfNumber(rawBonusLottoNumber)) {
-            throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(IS_NOT_CONSIST_OF_NUMBER);
         }
     }
 

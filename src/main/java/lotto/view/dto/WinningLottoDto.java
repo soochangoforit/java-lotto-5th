@@ -1,9 +1,9 @@
 package lotto.view.dto;
 
 import static java.util.stream.Collectors.toList;
+import static lotto.domain.ErrorMessage.IS_NOT_BLANK;
 import static lotto.domain.ErrorMessage.IS_NOT_CONSIST_OF_NUMBER;
 import static lotto.domain.ErrorMessage.OVER_LOTTO_SIZE;
-import static lotto.domain.ErrorMessage.WINNING_LOTTO_NOT_BLANK;
 import static lotto.domain.Lotto.LOTTO_SIZE;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class WinningLottoDto {
 
     private static void validate(String rawWinningLottoNumbers) {
         if (rawWinningLottoNumbers.isBlank()) {
-            throw new IllegalArgumentException(WINNING_LOTTO_NOT_BLANK);
+            throw new IllegalArgumentException(IS_NOT_BLANK);
         }
         if (isNotLottoSize(rawWinningLottoNumbers)) {
             throw new IllegalArgumentException(OVER_LOTTO_SIZE);
@@ -54,7 +54,7 @@ public class WinningLottoDto {
         String[] splitRawWinningNumbers = rawWinningLottoNumbers.split(WINNING_LOTTO_DELIMITER);
         return splitRawWinningNumbers.length != LOTTO_SIZE;
     }
-    
+
 
     public List<Integer> getWinningNumbers() {
         return winningLotto;

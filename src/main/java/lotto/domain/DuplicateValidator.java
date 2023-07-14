@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.ErrorMessage.BONUS_BALL_IS_DUPLICATED;
+
 public class DuplicateValidator {
 
     private DuplicateValidator() {
@@ -7,7 +9,7 @@ public class DuplicateValidator {
 
     public static void validate(final Lotto winningLotto, final LottoNumber bonusLotto) {
         if (winningLotto.hasSameNumber(bonusLotto)) {
-            throw new IllegalArgumentException("보너스 볼은 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(BONUS_BALL_IS_DUPLICATED);
         }
     }
 }
