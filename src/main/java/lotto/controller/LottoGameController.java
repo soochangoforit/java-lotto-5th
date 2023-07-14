@@ -9,6 +9,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.dto.InputMoneyRequest;
 import lotto.view.dto.LottoTicketInfoDto;
+import lotto.view.dto.WinningLottoDto;
 
 public class LottoGameController {
 
@@ -24,11 +25,13 @@ public class LottoGameController {
 
     public void run() {
         InputMoneyRequest moneyRequest = inputView.inputMoney();
+
         LottoCount lottoCount = LottoPrice.calculateLottoCount(moneyRequest);
         LottoTicket lottoTicket = LottoTicketFactory.createLottoTicket(lottoCount, numberGenerator);
         LottoTicketInfoDto responseDto = LottoTicketInfoDto.from(lottoTicket);
         outputView.printLottoTicket(responseDto);
 
+        WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
 
     }
 }
