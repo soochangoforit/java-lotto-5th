@@ -16,5 +16,6 @@ public class LottoGameController {
         InputMoneyRequest moneyRequest = inputView.inputMoney();
         LottoCount lottoCount = LottoPrice.calculateLottoCount(moneyRequest);
 
+
     }
 }

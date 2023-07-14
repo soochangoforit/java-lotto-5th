@@ -102,3 +102,7 @@
 ### LottoTicket
 
 - Lotto을 감싸고 있는 일급 컬렉션
+
+### LottoTicketFactory
+
+- 생성하고자 하는 티켓의 개수에 따라, 로또 티켓을 만든다.
