@@ -45,7 +45,19 @@ public class Lotto {
     }
 
 
-    public boolean hasSameNumber(final LottoNumber bonusLotto) {
+    public boolean hasSameNumberWith(final LottoNumber bonusLotto) {
         return numbers.contains(bonusLotto);
+    }
+
+    public LottoPrize calculateResult(final Lotto winningLotto, final LottoNumber bonusLotto) {
+        int matchCount = countMatch(winningLotto);
+        boolean hasBonus = hasSameNumberWith(bonusLotto);
+        return LottoPrize.getPrizeFrom(matchCount, hasBonus);
+    }
+
+    private int countMatch(final Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::hasSameNumberWith)
+                .count();
     }
 }

@@ -8,6 +8,7 @@ import lotto.domain.LottoPrice;
 import lotto.domain.LottoTicket;
 import lotto.domain.LottoTicketFactory;
 import lotto.domain.NumberGenerator;
+import lotto.domain.TotalPrize;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.dto.BonusLottoDto;
@@ -40,6 +41,9 @@ public class LottoGameController {
         BonusLottoDto bonusLottoDto = inputView.inputBonusLotto();
         LottoNumber bonusLotto = new LottoNumber(bonusLottoDto.getBonusNumber());
         DuplicateValidator.validate(winningLotto, bonusLotto);
+
+        TotalPrize totalPrize = lottoTicket.getTotalPrize(winningLotto, bonusLotto);
+
 
     }
 }

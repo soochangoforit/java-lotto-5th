@@ -8,7 +8,7 @@ public class DuplicateValidator {
     }
 
     public static void validate(final Lotto winningLotto, final LottoNumber bonusLotto) {
-        if (winningLotto.hasSameNumber(bonusLotto)) {
+        if (winningLotto.hasSameNumberWith(bonusLotto)) {
             throw new IllegalArgumentException(BONUS_BALL_IS_DUPLICATED);
         }
     }
