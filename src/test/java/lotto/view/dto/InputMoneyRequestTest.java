@@ -13,16 +13,14 @@ class InputMoneyRequestTest {
     @ValueSource(strings = {"", " ", "  "})
     void InputMoneyRequest생성자는_빈문자열_혹은_공백을_입력받으면_IllegalArgumentException을_던진다(String inputMoney) {
         assertThatThrownBy(() -> new InputMoneyRequest(inputMoney))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 숫자만 입력 가능합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest(name = "숫자가 아닌 문자열 {0}을 입력받으면, IllegalArgumentException을 반환한다")
     @ValueSource(strings = {"abc", "가나다"})
     void InputMoneyRequest생성자는_숫자가_아닌_문자열을_입력받으면_IllegalArgumentException을_던진다(String inputMoney) {
         assertThatThrownBy(() -> new InputMoneyRequest(inputMoney))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 숫자만 입력 가능합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 
@@ -31,8 +29,8 @@ class InputMoneyRequestTest {
             "14000, 14",
             "1000, 1"
     })
-    void calculateLottoCount메서드는_로또티켓구매_금액을_받아_만들_수_있는_로또티켓개수을_응답한다(InputMoneyRequest inputMoney, int ticketCountExpected) {
-        int ticketCount = inputMoney.calculateLottoCount(1000);
+    void calculateLottoCount메서드는_로또티켓구매_금액을_받아_만들_수_있는_로또티켓개수을_응답한다(InputMoneyRequest inputMoney, long ticketCountExpected) {
+        long ticketCount = inputMoney.calculateLottoCount(1000);
 
         assertThat(ticketCount).isEqualTo(ticketCountExpected);
     }

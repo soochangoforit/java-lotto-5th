@@ -10,7 +10,7 @@ public class LottoPrice {
 
     public static LottoCount calculateLottoCount(InputMoneyRequest playerMoney) {
         validate(playerMoney);
-        int ticketCount = playerMoney.calculateLottoCount(LOTTO_PRICE);
+        long ticketCount = playerMoney.calculateLottoCount(LOTTO_PRICE);
         return new LottoCount(ticketCount);
     }
 

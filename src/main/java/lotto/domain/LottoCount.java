@@ -6,20 +6,20 @@ import java.util.Objects;
 
 public class LottoCount {
 
-    private final int count;
+    private final long count;
 
-    public LottoCount(int count) {
+    public LottoCount(long count) {
         validate(count);
         this.count = count;
     }
 
-    private void validate(int count) {
+    private void validate(long count) {
         if (isUnderZero(count)) {
             throw new IllegalArgumentException(CAN_NOT_UNDER_ZERO);
         }
     }
 
-    private static boolean isUnderZero(final int count) {
+    private static boolean isUnderZero(final long count) {
         return count <= 0;
     }
 
@@ -36,7 +36,7 @@ public class LottoCount {
         return Objects.hash(count);
     }
 
-    public int getCount() {
+    public long getCount() {
         return count;
     }
 
