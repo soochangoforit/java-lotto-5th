@@ -7,6 +7,7 @@ import lotto.domain.LottoNumber;
 import lotto.domain.LottoPrice;
 import lotto.domain.LottoTicket;
 import lotto.domain.LottoTicketFactory;
+import lotto.domain.Money;
 import lotto.domain.NumberGenerator;
 import lotto.domain.TotalPrize;
 import lotto.view.InputView;
@@ -30,8 +31,8 @@ public class LottoGameController {
 
     public void run() {
         InputMoneyRequest moneyRequest = inputView.inputMoney();
-
-        LottoCount lottoCount = LottoPrice.calculateLottoCount(moneyRequest);
+        Money playerMoney = Money.from(moneyRequest.getInputMoney());
+        LottoCount lottoCount = LottoPrice.calculateLottoCount(playerMoney);
         LottoTicket lottoTicket = LottoTicketFactory.createLottoTicket(lottoCount, numberGenerator);
         LottoTicketInfoDto responseDto = LottoTicketInfoDto.from(lottoTicket);
         outputView.printLottoTicket(responseDto);

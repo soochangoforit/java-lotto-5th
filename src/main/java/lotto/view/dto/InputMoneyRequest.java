@@ -7,12 +7,12 @@ import java.util.regex.Pattern;
 public class InputMoneyRequest {
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[0-9]*$");
 
-    private final long inputMoney;
+    private final String inputMoney;
 
 
     public InputMoneyRequest(final String inputMoney) {
         validate(inputMoney);
-        this.inputMoney = Long.parseLong(inputMoney);
+        this.inputMoney = inputMoney;
     }
 
     private void validate(final String lottoMoney) {
@@ -20,6 +20,7 @@ public class InputMoneyRequest {
             throw new IllegalArgumentException(IS_NOT_CONSIST_OF_NUMBER);
         }
     }
+
 
     private boolean isBlank(final String lottoMoney) {
         return lottoMoney.isBlank();
@@ -29,11 +30,9 @@ public class InputMoneyRequest {
         return NUMBER_REGEX.matcher(lottoMoney).matches();
     }
 
-    public long calculateLottoCount(final long lottoPrice) {
-        return inputMoney / lottoPrice;
+    public String getInputMoney() {
+        return inputMoney;
     }
 
-    public boolean isDivided(final int lottoPrice) {
-        return inputMoney % lottoPrice == 0;
-    }
+
 }
