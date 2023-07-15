@@ -108,8 +108,10 @@ class LottoTicketTest {
     @ParameterizedTest()
     @MethodSource("lottoTicket")
     void getTotalPrize는_당첨번호와_보너스번호에_따른_당첨결과를_얻는다(
-            LottoTicket lottoTicket, Lotto winningLotto, LottoNumber bonusLotto, TotalPrize expected
+            LottoTicket lottoTicket, Lotto winningLotto, LottoNumber bonusLotto, TotalPrize expectedTotalPrize
     ) {
-        assertThat(lottoTicket.getTotalPrize(winningLotto, bonusLotto)).isEqualTo(expected);
+        TotalPrize actualTotalPrize = lottoTicket.getTotalPrize(winningLotto, bonusLotto);
+
+        assertThat(actualTotalPrize).isEqualTo(expectedTotalPrize);
     }
 }
