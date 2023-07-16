@@ -15,12 +15,12 @@ public enum LottoPrize {
 
     private final boolean hasBonus;
 
-    private final int prize;
+    private final int amount;
 
-    LottoPrize(final int matchCount, final boolean hasBonus, final int prize) {
+    LottoPrize(final int matchCount, final boolean hasBonus, final int amount) {
         this.matchCount = matchCount;
         this.hasBonus = hasBonus;
-        this.prize = prize;
+        this.amount = amount;
     }
 
 
@@ -32,5 +32,13 @@ public enum LottoPrize {
                 .filter(prize -> prize.matchCount == matchCount)
                 .findFirst()
                 .orElse(NOT_MATCHED);
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public long multiply(final long count) {
+        return amount * count;
     }
 }

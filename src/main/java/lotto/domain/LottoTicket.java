@@ -23,7 +23,7 @@ public class LottoTicket {
 
     public TotalLottoPrize getTotalPrize(final Lotto winningLotto, final LottoNumber bonusLottoNumber) {
         Map<LottoPrize, Long> totalLottoPrize = getLottoTotalPrize(winningLotto, bonusLottoNumber);
-        return new TotalLottoPrize(totalLottoPrize);
+        return TotalLottoPrize.from(totalLottoPrize);
     }
 
     private Map<LottoPrize, Long> getLottoTotalPrize(final Lotto winningLotto, final LottoNumber bonusLottoNumber) {

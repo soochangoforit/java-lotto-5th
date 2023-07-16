@@ -35,4 +35,8 @@ public class Money {
     public long calculateLottoCount(final int lottoPrice) {
         return playerMoney / lottoPrice;
     }
+
+    public long getAmount() {
+        return playerMoney;
+    }
 }

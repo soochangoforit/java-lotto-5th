@@ -7,8 +7,12 @@ public class TotalLottoPrize {
 
     private final Map<LottoPrize, Long> lottoPrizes;
 
-    public TotalLottoPrize(final Map<LottoPrize, Long> lottoPrizes) {
+    private TotalLottoPrize(final Map<LottoPrize, Long> lottoPrizes) {
         this.lottoPrizes = lottoPrizes;
+    }
+
+    public static TotalLottoPrize from(final Map<LottoPrize, Long> lottoPrizes) {
+        return new TotalLottoPrize(lottoPrizes);
     }
 
     @Override
@@ -22,5 +26,15 @@ public class TotalLottoPrize {
     @Override
     public int hashCode() {
         return Objects.hash(lottoPrizes);
+    }
+
+    public WinningRate calculateWinningRate(final Money playerMoney) {
+        long totalPrizeMoney = lottoPrizes.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().multiply(entry.getValue()))
+                .sum();
+
+        float winningRate = ((float) totalPrizeMoney / playerMoney.getAmount()) * 100;
+
+        return WinningRate.from(winningRate);
     }
 }

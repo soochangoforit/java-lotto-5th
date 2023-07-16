@@ -9,6 +9,7 @@ import lotto.domain.Money;
 import lotto.domain.NumberGenerator;
 import lotto.domain.TicketCount;
 import lotto.domain.TotalLottoPrize;
+import lotto.domain.WinningRate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.dto.BonusLottoDto;
@@ -43,6 +44,7 @@ public class LottoGameController {
         winningLotto.validateDuplicate(bonusLotto);
 
         TotalLottoPrize totalLottoPrize = lottoTicket.getTotalPrize(winningLotto, bonusLotto);
+        WinningRate winningRate = totalLottoPrize.calculateWinningRate(playerMoney);
 
 
     }
