@@ -1,20 +1,19 @@
 package lotto.controller;
 
-import lotto.domain.DuplicateValidator;
 import lotto.domain.Lotto;
-import lotto.domain.LottoCount;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoPrice;
 import lotto.domain.LottoTicket;
 import lotto.domain.LottoTicketFactory;
 import lotto.domain.Money;
 import lotto.domain.NumberGenerator;
-import lotto.domain.TotalPrize;
+import lotto.domain.TicketCount;
+import lotto.domain.TotalLottoPrize;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.dto.BonusLottoDto;
-import lotto.view.dto.InputMoneyRequest;
 import lotto.view.dto.LottoTicketInfoDto;
+import lotto.view.dto.PlayerMoneyRequest;
 import lotto.view.dto.WinningLottoDto;
 
 public class LottoGameController {
@@ -30,20 +29,20 @@ public class LottoGameController {
 
 
     public void run() {
-        InputMoneyRequest moneyRequest = inputView.inputMoney();
-        Money playerMoney = Money.from(moneyRequest.getInputMoney());
-        LottoCount lottoCount = LottoPrice.calculateLottoCount(playerMoney);
-        LottoTicket lottoTicket = LottoTicketFactory.createLottoTicket(lottoCount, numberGenerator);
+        PlayerMoneyRequest playerMoneyRequest = inputView.scanPlayerMoney();
+        Money playerMoney = Money.from(playerMoneyRequest.getPlayerMoney());
+        TicketCount ticketCount = LottoPrice.calculateLottoCount(playerMoney);
+        LottoTicket lottoTicket = LottoTicketFactory.createLottoTicket(ticketCount, numberGenerator);
         LottoTicketInfoDto responseDto = LottoTicketInfoDto.from(lottoTicket);
         outputView.printLottoTicket(responseDto);
 
-        WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
-        Lotto winningLotto = new Lotto(winningLottoDto.getWinningNumbers());
-        BonusLottoDto bonusLottoDto = inputView.inputBonusLotto();
-        LottoNumber bonusLotto = new LottoNumber(bonusLottoDto.getBonusNumber());
-        DuplicateValidator.validate(winningLotto, bonusLotto);
+        WinningLottoDto winningLottoDto = inputView.scanWinningLotto();
+        Lotto winningLotto = Lotto.from(winningLottoDto.getWinningLotto());
+        BonusLottoDto bonusLottoDto = inputView.scanBonusLotto();
+        LottoNumber bonusLotto = LottoNumber.from(bonusLottoDto.getBonusNumber());
+        winningLotto.validateDuplicate(bonusLotto);
 
-        TotalPrize totalPrize = lottoTicket.getTotalPrize(winningLotto, bonusLotto);
+        TotalLottoPrize totalLottoPrize = lottoTicket.getTotalPrize(winningLotto, bonusLotto);
 
 
     }

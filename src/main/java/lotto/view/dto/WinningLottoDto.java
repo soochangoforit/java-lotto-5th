@@ -33,30 +33,30 @@ public class WinningLottoDto {
                 .collect(toList());
     }
 
-    private static void validate(String rawWinningLottoNumbers) {
-        if (rawWinningLottoNumbers.isBlank()) {
+    private static void validate(String winningLottoNumbers) {
+        if (winningLottoNumbers.isBlank()) {
             throw new IllegalArgumentException(IS_NOT_BLANK);
         }
-        if (isNotLottoSize(rawWinningLottoNumbers)) {
+        if (!isLottoSize(winningLottoNumbers)) {
             throw new IllegalArgumentException(OVER_LOTTO_SIZE);
         }
-        if (isNotConsistOfNumber(rawWinningLottoNumbers)) {
+        if (!isNumber(winningLottoNumbers)) {
             throw new IllegalArgumentException(IS_NOT_CONSIST_OF_NUMBER);
         }
     }
 
-    private static boolean isNotConsistOfNumber(final String rawWinningLottoNumbers) {
+    private static boolean isNumber(final String rawWinningLottoNumbers) {
         return Stream.of(rawWinningLottoNumbers.split(WINNING_LOTTO_DELIMITER))
-                .anyMatch(number -> !numberPattern.matcher(number).matches());
+                .anyMatch(number -> numberPattern.matcher(number).matches());
     }
 
-    private static boolean isNotLottoSize(final String rawWinningLottoNumbers) {
+    private static boolean isLottoSize(final String rawWinningLottoNumbers) {
         String[] splitRawWinningNumbers = rawWinningLottoNumbers.split(WINNING_LOTTO_DELIMITER);
-        return splitRawWinningNumbers.length != LOTTO_SIZE;
+        return splitRawWinningNumbers.length == LOTTO_SIZE;
     }
 
 
-    public List<Integer> getWinningNumbers() {
+    public List<Integer> getWinningLotto() {
         return winningLotto;
     }
 }

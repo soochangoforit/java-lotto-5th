@@ -1,9 +1,7 @@
 package lotto.view.dto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 
 public class LottoTicketInfoDto {
@@ -18,9 +16,7 @@ public class LottoTicketInfoDto {
     }
 
     public static LottoTicketInfoDto from(final LottoTicket lottoTicket) {
-        List<List<Integer>> lottoTicketInfo = lottoTicket.getLottos().stream()
-                .map(Lotto::getNumbers)
-                .collect(Collectors.toList());
+        List<List<Integer>> lottoTicketInfo = lottoTicket.getAllLottoNumbers();
 
         return new LottoTicketInfoDto(lottoTicketInfo, lottoTicket.size());
     }

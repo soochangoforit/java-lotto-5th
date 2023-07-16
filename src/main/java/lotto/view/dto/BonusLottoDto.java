@@ -21,16 +21,16 @@ public class BonusLottoDto {
         return new BonusLottoDto(Integer.parseInt(rawBonusLottoNumber));
     }
 
-    private static void validate(final String rawBonusLottoNumber) {
-        if (rawBonusLottoNumber.isBlank()) {
+    private static void validate(final String bonusLottoNumber) {
+        if (bonusLottoNumber.isBlank()) {
             throw new IllegalArgumentException(IS_NOT_BLANK);
         }
 
-        if (!hasOneNumber(rawBonusLottoNumber)) {
+        if (!hasOneNumber(bonusLottoNumber)) {
             throw new IllegalArgumentException(IS_NOT_ONE_BONUS_BALL);
         }
 
-        if (isNotConsistOfNumber(rawBonusLottoNumber)) {
+        if (isNotConsistOfNumber(bonusLottoNumber)) {
             throw new IllegalArgumentException(IS_NOT_CONSIST_OF_NUMBER);
         }
     }

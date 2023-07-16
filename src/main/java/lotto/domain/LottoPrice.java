@@ -6,10 +6,13 @@ public class LottoPrice {
 
     private static final int LOTTO_PRICE = 1000;
 
-    public static LottoCount calculateLottoCount(Money playerMoney) {
+    private LottoPrice() {
+    }
+
+    public static TicketCount calculateLottoCount(Money playerMoney) {
         validate(playerMoney);
         long ticketCount = playerMoney.calculateLottoCount(LOTTO_PRICE);
-        return new LottoCount(ticketCount);
+        return new TicketCount(ticketCount);
     }
 
     private static void validate(Money playerMoney) {

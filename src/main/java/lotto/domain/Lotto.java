@@ -1,63 +1,81 @@
 package lotto.domain;
 
 import static java.util.stream.Collectors.toList;
+import static lotto.domain.ErrorMessage.BONUS_BALL_IS_DUPLICATED;
 import static lotto.domain.ErrorMessage.OVER_LOTTO_SIZE;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
 
     public static final int LOTTO_SIZE = 6;
-    private final List<LottoNumber> numbers;
+    private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = convertFrom(numbers);
+    private Lotto(List<Integer> lottoNumbers) {
+        validate(lottoNumbers);
+        this.lottoNumbers = convertFrom(lottoNumbers);
     }
 
-    private List<LottoNumber> convertFrom(final List<Integer> numbers) {
-        return numbers.stream()
-                .map(LottoNumber::new)
+    public static Lotto from(List<Integer> lottoNumbers) {
+        return new Lotto(lottoNumbers);
+    }
+
+    public static Lotto from(int... lottoNumbers) {
+        return new Lotto(Arrays.stream(lottoNumbers)
+                .boxed()
+                .collect(toList()));
+    }
+
+    private List<LottoNumber> convertFrom(final List<Integer> lottoNumbers) {
+        return lottoNumbers.stream()
+                .map(LottoNumber::from)
                 .collect(toList());
     }
 
-    private void validate(List<Integer> numbers) {
-        if (!isRightSize(numbers) || !isUnique(numbers)) {
+    private void validate(List<Integer> lottoNumbers) {
+        if (!isRightSize(lottoNumbers) || !isUnique(lottoNumbers)) {
             throw new IllegalArgumentException(OVER_LOTTO_SIZE);
         }
     }
 
-    private boolean isRightSize(final List<Integer> numbers) {
-        return numbers.size() == LOTTO_SIZE;
+    private boolean isRightSize(final List<Integer> lottoNumbers) {
+        return lottoNumbers.size() == LOTTO_SIZE;
     }
 
-    private boolean isUnique(final List<Integer> numbers) {
-        return numbers.stream()
+    private boolean isUnique(final List<Integer> lottoNumbers) {
+        return lottoNumbers.stream()
                 .distinct()
                 .count() == LOTTO_SIZE;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers.stream()
+    public List<Integer> getLottoNumbers() {
+        return lottoNumbers.stream()
                 .map(LottoNumber::getNumber)
                 .sorted()
                 .collect(toList());
     }
 
 
-    public boolean hasSameNumberWith(final LottoNumber bonusLotto) {
-        return numbers.contains(bonusLotto);
+    public boolean containsNumber(final LottoNumber number) {
+        return lottoNumbers.contains(number);
     }
 
-    public LottoPrize calculateResult(final Lotto winningLotto, final LottoNumber bonusLotto) {
+    public LottoPrize calculateLottoPrize(final Lotto winningLotto, final LottoNumber bonusLottoNumber) {
         int matchCount = countMatch(winningLotto);
-        boolean hasBonus = hasSameNumberWith(bonusLotto);
-        return LottoPrize.getPrizeFrom(matchCount, hasBonus);
+        boolean containsBonusNumber = containsNumber(bonusLottoNumber);
+        return LottoPrize.getLottoPrize(matchCount, containsBonusNumber);
     }
 
     private int countMatch(final Lotto winningLotto) {
-        return (int) numbers.stream()
-                .filter(winningLotto::hasSameNumberWith)
+        return (int) lottoNumbers.stream()
+                .filter(winningLotto::containsNumber)
                 .count();
+    }
+
+    public void validateDuplicate(final LottoNumber bonusLotto) {
+        if (containsNumber(bonusLotto)) {
+            throw new IllegalArgumentException(BONUS_BALL_IS_DUPLICATED);
+        }
     }
 }

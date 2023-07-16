@@ -6,15 +6,15 @@ public class Money {
 
     private static final long ZERO = 0L;
 
-    private final long money;
+    private final long playerMoney;
 
-    private Money(final long money) {
-        validate(money);
-        this.money = money;
+    public Money(final long playerMoney) {
+        validate(playerMoney);
+        this.playerMoney = playerMoney;
     }
 
-    public static Money from(final String playerMoney) {
-        return new Money(Long.parseLong(playerMoney));
+    public static Money from(final long playerMoney) {
+        return new Money(playerMoney);
     }
 
     private void validate(final long money) {
@@ -29,10 +29,10 @@ public class Money {
 
 
     public boolean isDivided(final int lottoPrice) {
-        return money % lottoPrice == ZERO;
+        return playerMoney % lottoPrice == ZERO;
     }
 
     public long calculateLottoCount(final int lottoPrice) {
-        return money / lottoPrice;
+        return playerMoney / lottoPrice;
     }
 }

@@ -13,10 +13,10 @@ public class LottoTicketFactory {
     private LottoTicketFactory() {
     }
 
-    public static LottoTicket createLottoTicket(final LottoCount lottoCount, final NumberGenerator generator) {
-        return Stream.generate(() -> generator.generateNumbers(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE))
-                .limit(lottoCount.getCount())
-                .map(Lotto::new)
+    public static LottoTicket createLottoTicket(final TicketCount ticketCount, final NumberGenerator numberGenerator) {
+        return Stream.generate(() -> numberGenerator.generateNumbers(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE))
+                .limit(ticketCount.getCount())
+                .map(Lotto::from)
                 .collect(collectingAndThen(toList(), LottoTicket::new));
     }
 }

@@ -21,14 +21,20 @@ public class LottoTicket {
         return lottos;
     }
 
-    public TotalPrize getTotalPrize(final Lotto winningLotto, final LottoNumber bonusLotto) {
-        Map<LottoPrize, Long> totalPrize = getLottoTotalPrize(winningLotto, bonusLotto);
-        return new TotalPrize(totalPrize);
+    public TotalLottoPrize getTotalPrize(final Lotto winningLotto, final LottoNumber bonusLottoNumber) {
+        Map<LottoPrize, Long> totalLottoPrize = getLottoTotalPrize(winningLotto, bonusLottoNumber);
+        return new TotalLottoPrize(totalLottoPrize);
     }
 
-    private Map<LottoPrize, Long> getLottoTotalPrize(final Lotto winningLotto, final LottoNumber bonusLotto) {
+    private Map<LottoPrize, Long> getLottoTotalPrize(final Lotto winningLotto, final LottoNumber bonusLottoNumber) {
         return lottos.stream()
-                .map(lotto -> lotto.calculateResult(winningLotto, bonusLotto))
+                .map(lotto -> lotto.calculateLottoPrize(winningLotto, bonusLottoNumber))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    }
+
+    public List<List<Integer>> getAllLottoNumbers() {
+        return lottos.stream()
+                .map(Lotto::getLottoNumbers)
+                .collect(Collectors.toList());
     }
 }

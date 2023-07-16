@@ -4,30 +4,30 @@ import static lotto.domain.ErrorMessage.CAN_NOT_UNDER_ZERO;
 
 import java.util.Objects;
 
-public class LottoCount {
+public class TicketCount {
 
     private final long count;
 
-    public LottoCount(long count) {
+    public TicketCount(long count) {
         validate(count);
         this.count = count;
     }
 
-    private void validate(long count) {
-        if (isUnderZero(count)) {
+    private void validate(long ticketCount) {
+        if (isUnderZero(ticketCount)) {
             throw new IllegalArgumentException(CAN_NOT_UNDER_ZERO);
         }
     }
 
-    private static boolean isUnderZero(final long count) {
-        return count <= 0;
+    private static boolean isUnderZero(final long ticketCount) {
+        return ticketCount <= 0;
     }
 
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final LottoCount that = (LottoCount) o;
+        final TicketCount that = (TicketCount) o;
         return count == that.count;
     }
 

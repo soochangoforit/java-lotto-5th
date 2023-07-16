@@ -2,29 +2,32 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.dto.BonusLottoDto;
-import lotto.view.dto.InputMoneyRequest;
+import lotto.view.dto.PlayerMoneyRequest;
 import lotto.view.dto.WinningLottoDto;
 
 public enum InputView {
 
     INSTANCE;
 
-    private static final String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String SCAN_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String SCAN_WINNING_LOTTO_MESSAGE = "당첨 번호를 입력해 주세요.";
 
-    public InputMoneyRequest inputMoney() {
-        System.out.println(INPUT_MONEY_MESSAGE);
-        String lottoMoney = Console.readLine();
-        return new InputMoneyRequest(lottoMoney);
+    private static final String SCAN_BONUS_LOTTO_MESSAGE = "보너스 볼을 입력해 주세요.";
+
+    public PlayerMoneyRequest scanPlayerMoney() {
+        System.out.println(SCAN_MONEY_MESSAGE);
+        String playerMoney = Console.readLine();
+        return PlayerMoneyRequest.from(playerMoney);
     }
 
-    public WinningLottoDto inputWinningLotto() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String rawWinningLottoNumbers = Console.readLine();
-        return WinningLottoDto.from(rawWinningLottoNumbers);
+    public WinningLottoDto scanWinningLotto() {
+        System.out.println(SCAN_WINNING_LOTTO_MESSAGE);
+        String winningLottoNumbers = Console.readLine();
+        return WinningLottoDto.from(winningLottoNumbers);
     }
 
-    public BonusLottoDto inputBonusLotto() {
-        System.out.println("보너스 볼을 입력해 주세요.");
+    public BonusLottoDto scanBonusLotto() {
+        System.out.println(SCAN_BONUS_LOTTO_MESSAGE);
         String rawBonusLottoNumber = Console.readLine();
         return BonusLottoDto.from(rawBonusLottoNumber);
     }
