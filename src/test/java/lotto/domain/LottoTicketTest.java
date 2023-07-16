@@ -41,7 +41,7 @@ class LottoTicketTest {
     }
 
     private static TotalLottoPrize totalPrize(Map<LottoPrize, Long> prizes) {
-        return new TotalLottoPrize(prizes);
+        return TotalLottoPrize.from(prizes);
     }
 
 
