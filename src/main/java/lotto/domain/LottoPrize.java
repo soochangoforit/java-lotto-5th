@@ -41,4 +41,8 @@ public enum LottoPrize {
     public long multiply(final long count) {
         return amount * count;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
 }

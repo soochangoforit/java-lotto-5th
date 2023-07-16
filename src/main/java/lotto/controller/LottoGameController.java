@@ -16,6 +16,7 @@ import lotto.view.dto.BonusLottoDto;
 import lotto.view.dto.LottoTicketInfoDto;
 import lotto.view.dto.PlayerMoneyRequest;
 import lotto.view.dto.WinningLottoDto;
+import lotto.view.dto.WinningStatisticInfo;
 
 public class LottoGameController {
 
@@ -45,7 +46,7 @@ public class LottoGameController {
 
         TotalLottoPrize totalLottoPrize = lottoTicket.getTotalPrize(winningLotto, bonusLotto);
         WinningRate winningRate = totalLottoPrize.calculateWinningRate(playerMoney);
-
-
+        WinningStatisticInfo resultDto = WinningStatisticInfo.from(totalLottoPrize.getLottoPrizes(), winningRate.getRate());
+        outputView.printWinningStatisticResult(resultDto);
     }
 }

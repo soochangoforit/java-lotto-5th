@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -36,5 +37,10 @@ public class TotalLottoPrize {
         float winningRate = ((float) totalPrizeMoney / playerMoney.getAmount()) * 100;
 
         return WinningRate.from(winningRate);
+    }
+
+
+    public Map<LottoPrize, Long> getLottoPrizes() {
+        return new EnumMap<>(lottoPrizes);
     }
 }
