@@ -37,4 +37,8 @@ public class BonusLottoDto {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
+    public int getNumber() {
+        return bonusNumber;
+    }
 }

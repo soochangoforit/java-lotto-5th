@@ -1,7 +1,9 @@
 package lotto.view.dto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -27,4 +29,17 @@ class BonusLottoDtoTest {
         assertThatThrownBy(() -> BonusLottoDto.from(rawBonusLottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
+    @Test
+    void from메서드는_유효성검사를_모두_통과하는_경우_객체를_생성한다() {
+        String rawBonusLottoNumber = "42";
+
+        BonusLottoDto result = BonusLottoDto.from(rawBonusLottoNumber);
+
+        assertEquals(BonusLottoDto.class, result.getClass());
+        assertEquals(42, result.getNumber());  // Assuming getNumber() is a method in BonusLottoDto
+    }
+
+
 }
