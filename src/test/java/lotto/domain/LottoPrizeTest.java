@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import static lotto.domain.LottoPrize.FIFTH_PRIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -15,8 +17,8 @@ class LottoPrizeTest {
         return Stream.of(
                 Arguments.of(0, false, LottoPrize.NOT_MATCHED),
                 Arguments.of(1, false, LottoPrize.NOT_MATCHED),
-                Arguments.of(3, false, LottoPrize.FIFTH_PRIZE),
-                Arguments.of(3, true, LottoPrize.FIFTH_PRIZE),
+                Arguments.of(3, false, FIFTH_PRIZE),
+                Arguments.of(3, true, FIFTH_PRIZE),
                 Arguments.of(4, false, LottoPrize.FOURTH_PRIZE),
                 Arguments.of(4, true, LottoPrize.FOURTH_PRIZE),
                 Arguments.of(5, false, LottoPrize.THIRD_PRIZE),
@@ -33,6 +35,15 @@ class LottoPrizeTest {
     ) {
         LottoPrize actualLottoPrize = LottoPrize.getLottoPrize(matchCount, hasBonus);
         assertThat(actualLottoPrize).isEqualTo(expectedLottoPrize);
+    }
+
+
+    @Test
+    void multiply메서드는_로또_개수를_입력받아_상금을_곱해서_반환한다() {
+        long expected = 5000L * 3L;
+        long actual = FIFTH_PRIZE.multiply(3L);
+
+        assertThat(actual).isEqualTo(expected);
     }
 
 }
