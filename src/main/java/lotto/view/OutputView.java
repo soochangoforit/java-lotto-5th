@@ -56,4 +56,9 @@ public enum OutputView {
     }
 
 
+    public void printErrorMessage(final String message) {
+        StringBuilder errorMessage = new StringBuilder("[ERROR] ");
+        errorMessage.append(message);
+        System.out.println(errorMessage);
+    }
 }

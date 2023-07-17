@@ -31,22 +31,27 @@ public class LottoGameController {
 
 
     public void run() {
-        PlayerMoneyRequest playerMoneyRequest = inputView.scanPlayerMoney();
-        Money playerMoney = Money.from(playerMoneyRequest.getPlayerMoney());
-        TicketCount ticketCount = LottoPrice.calculateLottoCount(playerMoney);
-        LottoTicket lottoTicket = LottoTicketFactory.createLottoTicket(ticketCount, numberGenerator);
-        LottoTicketInfoDto responseDto = LottoTicketInfoDto.from(lottoTicket);
-        outputView.printLottoTicket(responseDto);
+        try {
+            PlayerMoneyRequest playerMoneyRequest = inputView.scanPlayerMoney();
+            Money playerMoney = Money.from(playerMoneyRequest.getPlayerMoney());
+            TicketCount ticketCount = LottoPrice.calculateLottoCount(playerMoney);
+            LottoTicket lottoTicket = LottoTicketFactory.createLottoTicket(ticketCount, numberGenerator);
+            LottoTicketInfoDto responseDto = LottoTicketInfoDto.from(lottoTicket);
+            outputView.printLottoTicket(responseDto);
 
-        WinningLottoDto winningLottoDto = inputView.scanWinningLotto();
-        Lotto winningLotto = Lotto.from(winningLottoDto.getWinningLotto());
-        BonusLottoDto bonusLottoDto = inputView.scanBonusLotto();
-        LottoNumber bonusLotto = LottoNumber.from(bonusLottoDto.getBonusNumber());
-        winningLotto.validateDuplicate(bonusLotto);
+            WinningLottoDto winningLottoDto = inputView.scanWinningLotto();
+            Lotto winningLotto = Lotto.from(winningLottoDto.getWinningLotto());
+            BonusLottoDto bonusLottoDto = inputView.scanBonusLotto();
+            LottoNumber bonusLotto = LottoNumber.from(bonusLottoDto.getBonusNumber());
+            winningLotto.validateDuplicate(bonusLotto);
 
-        TotalLottoPrize totalLottoPrize = lottoTicket.getTotalPrize(winningLotto, bonusLotto);
-        WinningRate winningRate = totalLottoPrize.calculateWinningRate(playerMoney);
-        WinningStatisticInfo resultDto = WinningStatisticInfo.from(totalLottoPrize.getLottoPrizes(), winningRate.getRate());
-        outputView.printWinningStatisticResult(resultDto);
+            TotalLottoPrize totalLottoPrize = lottoTicket.getTotalPrize(winningLotto, bonusLotto);
+            WinningRate winningRate = totalLottoPrize.calculateWinningRate(playerMoney);
+            WinningStatisticInfo resultDto = WinningStatisticInfo.from(totalLottoPrize.getLottoPrizes(), winningRate.getRate());
+            outputView.printWinningStatisticResult(resultDto);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+        }
+
     }
 }
