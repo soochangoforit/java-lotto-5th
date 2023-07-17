@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -119,5 +120,23 @@ class LottoTicketTest {
         TotalLottoPrize actualTotalLottoPrize = lottoTicket.getTotalPrize(winningLotto, bonusLotto);
 
         assertThat(actualTotalLottoPrize).isEqualTo(expectedTotalLottoPrize);
+    }
+
+
+    @Test
+    void getLottoNumbers는_로또_번호들을_리스트로_반환한다() {
+        LottoTicket lottoTicket = new LottoTicket(List.of(
+                Lotto.from(1, 2, 3, 4, 5, 6),
+                Lotto.from(7, 8, 9, 10, 11, 12)
+        ));
+
+        List<List<Integer>> expectedLottoNumbers = List.of(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(7, 8, 9, 10, 11, 12)
+        );
+
+        List<List<Integer>> actual = lottoTicket.getAllLottoNumbers();
+
+        assertThat(actual).isEqualTo(expectedLottoNumbers);
     }
 }
