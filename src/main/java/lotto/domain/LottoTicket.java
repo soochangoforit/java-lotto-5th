@@ -17,10 +17,6 @@ public class LottoTicket {
         return lottos.size();
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
     public TotalLottoPrize getTotalPrize(final Lotto winningLotto, final LottoNumber bonusLottoNumber) {
         Map<LottoPrize, Long> totalLottoPrize = getLottoTotalPrize(winningLotto, bonusLottoNumber);
         return TotalLottoPrize.from(totalLottoPrize);
