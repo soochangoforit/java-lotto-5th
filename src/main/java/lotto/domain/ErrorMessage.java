@@ -11,8 +11,6 @@ public final class ErrorMessage {
 
     public static final String IS_NOT_BLANK = "빈문자열과 공백은 입력할 수 없습니다.";
 
-    public static final String IS_NOT_ONE_BONUS_BALL = "보너스 볼은 1개만 입력할 수 있습니다.";
-
     public static final String IS_NOT_CONSIST_OF_NUMBER = "숫자만 입력 가능합니다.";
 
     public static final String BONUS_BALL_IS_DUPLICATED = "보너스 볼은 당첨 번호와 중복될 수 없습니다.";
