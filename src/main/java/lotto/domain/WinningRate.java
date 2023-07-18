@@ -11,8 +11,12 @@ public class WinningRate {
     }
 
     public static WinningRate from(float rate) {
-        float roundedRate = Math.round(rate * 10) / 10f;
+        float roundedRate = roundTo(rate);
         return new WinningRate(roundedRate);
+    }
+
+    private static float roundTo(final float rate) {
+        return Math.round(rate * 10) / 10f;
     }
 
     public float getRate() {
