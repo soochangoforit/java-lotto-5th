@@ -8,7 +8,7 @@ import static lotto.domain.LottoNumber.MIN_NUMBER;
 
 import java.util.stream.Stream;
 
-public class LottoTicketFactory {
+public final class LottoTicketFactory {
 
     private LottoTicketFactory() {
     }

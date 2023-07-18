@@ -2,7 +2,7 @@ package lotto.domain;
 
 import static lotto.domain.ErrorMessage.ONLY_CAN_DIVIDE_BY_LOTTO_PRICE;
 
-public class LottoPrice {
+public final class LottoPrice {
 
     private static final int LOTTO_PRICE = 1000;
 
