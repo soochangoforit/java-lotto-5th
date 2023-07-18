@@ -17,6 +17,7 @@ public enum OutputView {
     private static final String COMMON_PRIZE_FORMAT = "%d개 일치 (%s원) - %d개\n";
     private static final String WINNING_RATE_FORMAT = "%,.1f";
     private static final String WINNING_RATE_MESSAGE = "총 수익률은 %s%%입니다.\n";
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
 
     public void printLottoTicket(final LottoTicketInfoDto lottoTicket) {
@@ -57,7 +58,7 @@ public enum OutputView {
 
 
     public void printErrorMessage(final String message) {
-        StringBuilder errorMessage = new StringBuilder("[ERROR] ");
+        StringBuilder errorMessage = new StringBuilder(ERROR_MESSAGE_PREFIX);
         errorMessage.append(message);
         System.out.println(errorMessage);
     }
