@@ -13,11 +13,11 @@ import lotto.domain.WinningLottoInfo;
 import lotto.domain.WinningRate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.dto.BonusLottoDto;
-import lotto.view.dto.LottoTicketInfoDto;
+import lotto.view.dto.BonusLottoRequest;
+import lotto.view.dto.LottoTicketInfoResponse;
 import lotto.view.dto.PlayerMoneyRequest;
-import lotto.view.dto.WinningLottoDto;
-import lotto.view.dto.WinningStatisticInfo;
+import lotto.view.dto.WinningLottoRequest;
+import lotto.view.dto.WinningStatisticResponse;
 
 public class LottoGameController {
 
@@ -62,24 +62,24 @@ public class LottoGameController {
     private LottoTicket getLottoTicket(Money playerMoney) {
         TicketCount ticketCount = LottoPrice.calculateLottoCount(playerMoney);
         LottoTicket lottoTicket = LottoTicketFactory.createLottoTicket(ticketCount, numberGenerator);
-        LottoTicketInfoDto responseDto = LottoTicketInfoDto.from(lottoTicket);
+        LottoTicketInfoResponse responseDto = LottoTicketInfoResponse.from(lottoTicket);
         outputView.printLottoTicket(responseDto);
         return lottoTicket;
     }
 
     private Lotto getWinningLotto() {
-        WinningLottoDto winningLottoDto = inputView.scanWinningLotto();
-        return Lotto.from(winningLottoDto.getWinningLotto());
+        WinningLottoRequest winningLottoRequest = inputView.scanWinningLotto();
+        return Lotto.from(winningLottoRequest.getWinningLotto());
     }
 
     private LottoNumber getBonusLotto() {
-        BonusLottoDto bonusLottoDto = inputView.scanBonusLotto();
-        return LottoNumber.from(bonusLottoDto.getBonusNumber());
+        BonusLottoRequest bonusLottoRequest = inputView.scanBonusLotto();
+        return LottoNumber.from(bonusLottoRequest.getBonusNumber());
     }
 
     private void printWinningStatistics(Money playerMoney, TotalLottoPrize totalLottoPrize) {
         WinningRate winningRate = totalLottoPrize.calculateWinningRate(playerMoney);
-        WinningStatisticInfo resultDto = WinningStatisticInfo.from(totalLottoPrize.getLottoPrizes(), winningRate.getRate());
+        WinningStatisticResponse resultDto = WinningStatisticResponse.from(totalLottoPrize.getLottoPrizes(), winningRate.getRate());
         outputView.printWinningStatisticResult(resultDto);
     }
 }

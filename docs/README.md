@@ -68,13 +68,13 @@
 
 ## Dto
 
-### BonusLottoDto
+### BonusLottoRequest
 
 - 보너스 번호 입력을 위한 객체 목적
     - 빈문자열 혹은 공백 검증
     - 숫자로만 이루어졌는지 검증
 
-### LottoTicketInfoDto
+### LottoTicketInfoResponse
 
 - 생성한 랜덤한 로또 티켓을 View에 전달하기 위한 목적
     - View에 필요한 데이터로 변환한다.
@@ -85,14 +85,14 @@
     - 빈문자열과 공백은 받을 수 없다.
     - 숫자로만 이루어져야 한다.
 
-### WinningLottoDto
+### WinningLottoRequest
 
 - 당첨 번호 입력을 감싸는 목적
     - 빈문자열과 공백은 받을 수 없다.
     - 숫자로만 이루어져야 한다.
     - 6개의 숫자로 이루어져야 한다.
 
-### WinningStatisticInfo
+### WinningStatisticResponse
 
 - 당첨 통계을 View에 전달하기 위한 목적
 

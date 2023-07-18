@@ -1,9 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.view.dto.BonusLottoDto;
+import lotto.view.dto.BonusLottoRequest;
 import lotto.view.dto.PlayerMoneyRequest;
-import lotto.view.dto.WinningLottoDto;
+import lotto.view.dto.WinningLottoRequest;
 
 public enum InputView {
 
@@ -20,15 +20,15 @@ public enum InputView {
         return PlayerMoneyRequest.from(playerMoney);
     }
 
-    public WinningLottoDto scanWinningLotto() {
+    public WinningLottoRequest scanWinningLotto() {
         System.out.println(SCAN_WINNING_LOTTO_MESSAGE);
         String winningLottoNumbers = Console.readLine();
-        return WinningLottoDto.from(winningLottoNumbers);
+        return WinningLottoRequest.from(winningLottoNumbers);
     }
 
-    public BonusLottoDto scanBonusLotto() {
+    public BonusLottoRequest scanBonusLotto() {
         System.out.println(SCAN_BONUS_LOTTO_MESSAGE);
         String rawBonusLottoNumber = Console.readLine();
-        return BonusLottoDto.from(rawBonusLottoNumber);
+        return BonusLottoRequest.from(rawBonusLottoNumber);
     }
 }

@@ -3,8 +3,8 @@ package lotto.view;
 import java.util.Arrays;
 
 import lotto.domain.LottoPrize;
-import lotto.view.dto.LottoTicketInfoDto;
-import lotto.view.dto.WinningStatisticInfo;
+import lotto.view.dto.LottoTicketInfoResponse;
+import lotto.view.dto.WinningStatisticResponse;
 
 public enum OutputView {
 
@@ -20,14 +20,14 @@ public enum OutputView {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
 
-    public void printLottoTicket(final LottoTicketInfoDto lottoTicket) {
+    public void printLottoTicket(final LottoTicketInfoResponse lottoTicket) {
         System.out.println();
         System.out.printf(LOTTO_TICKET_SIZE_MESSAGE, lottoTicket.size());
         lottoTicket.getLottoTicket().forEach(System.out::println);
     }
 
 
-    public void printWinningStatisticResult(final WinningStatisticInfo statisticInfo) {
+    public void printWinningStatisticResult(final WinningStatisticResponse statisticInfo) {
         printWinningStatisticsTitle();
         printWinningStatistics(statisticInfo);
         printWinningRate(statisticInfo);
@@ -37,7 +37,7 @@ public enum OutputView {
         System.out.println(WINNING_STATISTIC_TITLE);
     }
 
-    private static void printWinningStatistics(final WinningStatisticInfo statisticInfo) {
+    private static void printWinningStatistics(final WinningStatisticResponse statisticInfo) {
         Arrays.stream(LottoPrize.values())
                 .forEach(lottoPrize -> printPrizeStatus(lottoPrize, statisticInfo.getCount(lottoPrize)));
     }
@@ -51,7 +51,7 @@ public enum OutputView {
         System.out.printf(COMMON_PRIZE_FORMAT, lottoPrize.getMatchCount(), amount, count);
     }
 
-    private static void printWinningRate(final WinningStatisticInfo statisticInfo) {
+    private static void printWinningRate(final WinningStatisticResponse statisticInfo) {
         String rate = String.format(WINNING_RATE_FORMAT, statisticInfo.getWinningRate());
         System.out.printf(WINNING_RATE_MESSAGE, rate);
     }
