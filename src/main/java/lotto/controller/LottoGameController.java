@@ -9,6 +9,7 @@ import lotto.domain.Money;
 import lotto.domain.NumberGenerator;
 import lotto.domain.TicketCount;
 import lotto.domain.TotalLottoPrize;
+import lotto.domain.WinningLottoInfo;
 import lotto.domain.WinningRate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -34,25 +35,24 @@ public class LottoGameController {
         try {
             Money playerMoney = getPlayerMoney();
             LottoTicket lottoTicket = getLottoTicket(playerMoney);
-
-            Lotto winningLotto = getWinningLotto();
-            LottoNumber bonusLotto = getBonusLotto();
-            validateDuplicateLottoNumber(winningLotto, bonusLotto);
-
-            TotalLottoPrize totalLottoPrize = getTotalPrize(lottoTicket, winningLotto, bonusLotto);
+            WinningLottoInfo winningLottoInfo = getWinningLottoInfo();
+            TotalLottoPrize totalLottoPrize = getTotalPrize(lottoTicket, winningLottoInfo);
             printWinningStatistics(playerMoney, totalLottoPrize);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
         }
     }
 
-    private static TotalLottoPrize getTotalPrize(final LottoTicket lottoTicket, final Lotto winningLotto, final LottoNumber bonusLotto) {
-        return lottoTicket.getTotalPrize(winningLotto, bonusLotto);
+    private WinningLottoInfo getWinningLottoInfo() {
+        Lotto winningLotto = getWinningLotto();
+        LottoNumber bonusLotto = getBonusLotto();
+        return WinningLottoInfo.from(winningLotto, bonusLotto);
     }
 
-    private void validateDuplicateLottoNumber(final Lotto winningLotto, final LottoNumber bonusLotto) {
-        winningLotto.validateDuplicate(bonusLotto);
+    private static TotalLottoPrize getTotalPrize(final LottoTicket lottoTicket, final WinningLottoInfo winningLottoInfo) {
+        return lottoTicket.getTotalPrize(winningLottoInfo.getWinningLotto(), winningLottoInfo.getBonusNumber());
     }
+
 
     private Money getPlayerMoney() {
         PlayerMoneyRequest playerMoneyRequest = inputView.scanPlayerMoney();
