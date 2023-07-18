@@ -24,12 +24,6 @@ class WinningLottoDtoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3"})
-    void from메서드는_6개의_숫자가_아닌_경우_예외를_발생시킨다(String rawWinningLottoNumbers) {
-        assertThatThrownBy(() -> WinningLottoDto.from(rawWinningLottoNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 
     @Test
     void from메서드는_모든_유효성_검사가_끝나면_객체를_생성한다() {

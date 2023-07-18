@@ -3,7 +3,6 @@ package lotto.view.dto;
 import static java.util.stream.Collectors.toList;
 import static lotto.domain.ErrorMessage.IS_NOT_BLANK;
 import static lotto.domain.ErrorMessage.IS_NOT_CONSIST_OF_NUMBER;
-import static lotto.domain.ErrorMessage.OVER_LOTTO_SIZE;
 import static lotto.domain.Lotto.LOTTO_SIZE;
 
 import java.util.List;
@@ -37,9 +36,7 @@ public class WinningLottoDto {
         if (winningLottoNumbers.isBlank()) {
             throw new IllegalArgumentException(IS_NOT_BLANK);
         }
-        if (!isLottoSize(winningLottoNumbers)) {
-            throw new IllegalArgumentException(OVER_LOTTO_SIZE);
-        }
+
         if (!isNumber(winningLottoNumbers)) {
             throw new IllegalArgumentException(IS_NOT_CONSIST_OF_NUMBER);
         }
