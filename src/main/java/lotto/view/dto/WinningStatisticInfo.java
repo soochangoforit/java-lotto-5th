@@ -18,9 +18,6 @@ public class WinningStatisticInfo {
         return new WinningStatisticInfo(totalLottoPrizes, winningRate);
     }
 
-    public Map<LottoPrize, Long> getLottoPrizes() {
-        return totalLottoPrizes;
-    }
 
     public float getWinningRate() {
         return winningRate;
