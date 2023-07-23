@@ -21,9 +21,9 @@ public enum OutputView {
 
 
     public void printLottoTicket(final LottoTicketInfoResponse lottoTicket) {
-        System.out.println();
         System.out.printf(LOTTO_TICKET_SIZE_MESSAGE, lottoTicket.size());
         lottoTicket.getLottoTicket().forEach(System.out::println);
+        System.out.println();
     }
 
 
@@ -39,6 +39,7 @@ public enum OutputView {
 
     private static void printWinningStatistics(final WinningStatisticResponse statisticInfo) {
         Arrays.stream(LottoPrize.values())
+                .filter(lottoPrize -> lottoPrize != LottoPrize.NOT_MATCHED)
                 .forEach(lottoPrize -> printPrizeStatus(lottoPrize, statisticInfo.getCount(lottoPrize)));
     }
 
