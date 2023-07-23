@@ -17,18 +17,21 @@ public enum InputView {
     public PlayerMoneyRequest scanPlayerMoney() {
         System.out.println(SCAN_MONEY_MESSAGE);
         String playerMoney = Console.readLine();
+        System.out.println();
         return PlayerMoneyRequest.from(playerMoney);
     }
 
     public WinningLottoRequest scanWinningLotto() {
         System.out.println(SCAN_WINNING_LOTTO_MESSAGE);
         String winningLottoNumbers = Console.readLine();
+        System.out.println();
         return WinningLottoRequest.from(winningLottoNumbers);
     }
 
     public BonusLottoRequest scanBonusLotto() {
         System.out.println(SCAN_BONUS_LOTTO_MESSAGE);
         String rawBonusLottoNumber = Console.readLine();
+        System.out.println();
         return BonusLottoRequest.from(rawBonusLottoNumber);
     }
 }
